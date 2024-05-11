@@ -1,5 +1,7 @@
 from locators.home_pages_locators import HomePageLocators
 from page_objects.base_page import BasePage
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.wait import WebDriverWait
 from config import URl
 
 
@@ -11,16 +13,18 @@ class HomePage(BasePage):
     def open_home_page(self):
         self.navigate(URl, HomePageLocators.FAQ_QUESTION_FIRST_TITLE)
 
-    def click_faq_question(self, locator):
-        element = self.driver.find_element(*locator)
+    def click_faq_question(self, number):
+        element = self.driver.find_elements(*HomePageLocators.LIST_QUESTION_TITLE)[number]
         self.driver.execute_script("arguments[0].scrollIntoView();", element)
         element.click()
 
-    def check_attribute(self, locator):
-        return self.driver.find_element(*locator).get_attribute('aria-disabled')
+    def check_attribute(self, number):
+        return self.driver.find_elements(*HomePageLocators.LIST_QUESTION_TITLE)[number].get_attribute('aria-disabled')
 
-    def check_display_question_text(self, locator):
-        return self.driver.find_element(*locator).get_attribute('hidden')
+    def check_display_question_text(self, number):
+        return self.driver.find_elements(*HomePageLocators.LIST_QUESTION_TEXT)[number].get_attribute('hidden')
+
+
 
 
 
