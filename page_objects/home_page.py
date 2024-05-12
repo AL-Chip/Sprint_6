@@ -1,7 +1,5 @@
 from locators.home_pages_locators import HomePageLocators
 from page_objects.base_page import BasePage
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.support.wait import WebDriverWait
 from config import URl
 
 
@@ -23,6 +21,11 @@ class HomePage(BasePage):
 
     def check_display_question_text(self, number):
         return self.driver.find_elements(*HomePageLocators.LIST_QUESTION_TEXT)[number].get_attribute('hidden')
+
+    def click_button_order(self):
+        element = self.driver.find_element(*HomePageLocators.BUTTON_ORDER)
+        self.driver.execute_script("arguments[0].scrollIntoView();", element)
+        element.click()
 
 
 

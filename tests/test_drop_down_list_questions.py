@@ -11,7 +11,7 @@ class TestDropDownListQuestions:
     def setup_class(cls):
         cls.driver = webdriver.Firefox()
 
-    @pytest.mark.parametrize('number', list(range(1, 8)))
+    @pytest.mark.parametrize('number', list(range(0, 8)))
     def test_click_question(self, number):
         home_page = HomePage(self.driver)
         home_page.open_home_page()
