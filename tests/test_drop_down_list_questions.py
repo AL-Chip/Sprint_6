@@ -11,8 +11,10 @@ class TestDropDownListQuestions:
     def setup_class(cls):
         cls.driver = webdriver.Firefox()
 
-    @pytest.mark.parametrize('number', list(range(0, 8)))
-    def test_click_question(self, number):
+    @pytest.mark.usefixture("create_list_question")
+    @pytest.mark.parametrize('number', [create_list_question])
+    def test_click_question(self, number, request: pytest.FixtureRequest):
+        request.getfixturevalue(number)
         home_page = HomePage(self.driver)
         home_page.open_home_page()
         home_page.click_faq_question(number)

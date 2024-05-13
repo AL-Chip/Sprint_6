@@ -21,7 +21,7 @@ class OrderModalConfirmationLocators:
 
 
 class OrderModalSuccessfulLocators:
-    MODAL_TITLE = By.XPATH, "//*[contains(@class, 'Order_ModalHeader')]/text()" # Заголовок поп ап успеха
     BUTTON_VIEW_STATUS = By.XPATH, "//button[text() = 'Посмотреть статус']" # Кнопка просмотра статуса заказа
+
 
 

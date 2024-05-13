@@ -7,3 +7,9 @@ from selenium import webdriver
 def create_list_question():
     driver = webdriver.Firefox()
     return list(range(1, len(driver.find_elements(*HomePageLocators.LIST_QUESTION_TITLE))))
+
+
+@pytest.fixture
+def creating_order():
+    driver = webdriver.Firefox()
+
