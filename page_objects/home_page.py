@@ -1,7 +1,7 @@
 from locators.home_pages_locators import HomePageLocators
 from page_objects.base_page import BasePage
 from selenium.webdriver.support.wait import WebDriverWait
-from config import URl
+from config import URL
 
 
 class HomePage(BasePage):
@@ -10,7 +10,7 @@ class HomePage(BasePage):
         super().__init__(driver)
 
     def open_home_page(self):
-        self.navigate(URl, HomePageLocators.FAQ_QUESTION_FIRST_TITLE)
+        self.navigate(URL, HomePageLocators.FAQ_QUESTION_FIRST_TITLE)
 
     def click_faq_question(self, number):
         element = self.driver.find_elements(*HomePageLocators.LIST_QUESTION_TITLE)[number]
