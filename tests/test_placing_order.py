@@ -5,6 +5,7 @@ from page_objects.order_page import OrderPage, OrderModalConfirmation
 from locators.order_page_locators import OrderModalSuccessfulLocators
 from config import USER_SHERLOK, USER_JOHN
 import pytest
+import allure
 
 
 class TestPlacingOrder:
@@ -15,6 +16,7 @@ class TestPlacingOrder:
     def setup_class(cls):
         cls.driver = webdriver.Firefox()
 
+    @allure.title('Проверка заказа с главной страницы')
     @pytest.mark.parametrize('name, surname, address, phone', [USER_SHERLOK])
     def test_placing_order_witch_home(self, name, surname, address, phone):
         home_page = HomePage(self.driver)
@@ -27,6 +29,7 @@ class TestPlacingOrder:
         order_modal_page.click_button_confirmation()
         assert self.driver.find_element(*OrderModalSuccessfulLocators.BUTTON_VIEW_STATUS).is_displayed()
 
+    @allure.title('Проверка заказа через шапку сайта')
     @pytest.mark.parametrize('name, surname, address, phone', [USER_JOHN])
     def test_placing_order_witch_header(self, name, surname, address, phone):
         home_page = HomePage(self.driver)

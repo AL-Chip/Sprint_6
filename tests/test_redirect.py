@@ -5,6 +5,7 @@ from page_objects.header import Header
 from page_objects.order_page import OrderPage, OrderModalConfirmation, OrderModalSuccessful
 from config import USER_SHERLOK, USER_JOHN, URL, DZEN_URL
 import pytest
+import allure
 
 
 class TestRedirect:
@@ -15,6 +16,7 @@ class TestRedirect:
     def setup_class(cls):
         cls.driver = webdriver.Firefox()
 
+    @allure.title('Проверка редиректа на главную при нажатии на лого')
     @pytest.mark.parametrize('name, surname, address, phone', [USER_SHERLOK])
     def test_redirect_on_home_page(self, name, surname, address, phone):
         home_page = HomePage(self.driver)
@@ -30,7 +32,7 @@ class TestRedirect:
         order_modal_successful.click_button_confirmation()
         header.click_link_logo()
         assert self.driver.current_url == URL
-
+    @allure.title('Проверка редиректа на страницу яндекс дзен при нажатии на логотип яндекса')
     @pytest.mark.parametrize('name, surname, address, phone', [USER_JOHN])
     def test_redirect_on_yandex_zen(self, name, surname, address, phone):
         home_page = HomePage(self.driver)

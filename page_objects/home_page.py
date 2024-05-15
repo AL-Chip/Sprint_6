@@ -1,6 +1,7 @@
 from locators.home_pages_locators import HomePageLocators
 from page_objects.base_page import BasePage
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions
 from config import URL
 
 
@@ -15,8 +16,9 @@ class HomePage(BasePage):
     def click_faq_question(self, number):
         element = self.driver.find_elements(*HomePageLocators.LIST_QUESTION_TITLE)[number]
         self.driver.execute_script("arguments[0].scrollIntoView();", element)
+        WebDriverWait(self.driver, 10).until(expected_conditions.visibility_of_element_located(
+            HomePageLocators.FAQ_QUESTION_FIRST_TITLE))
         element.click()
-        WebDriverWait(self.driver, 5)
 
     def check_attribute(self, number):
         return self.driver.find_elements(*HomePageLocators.LIST_QUESTION_TITLE)[number].get_attribute('aria-disabled')
